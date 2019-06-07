@@ -1,0 +1,5 @@
+Note: You see a lot of defensive programming just as to avoid unforeseen scenarios, as this enterprise app has to be high available. Also code has been tailored in this samples which may cause missing dependencies.
+
+About: Change handler
+
+Use of OpenUI5 PropertyBinding abstract class to create a property change handler on a model. Similar work has been done to look for Array changes as well. Start looking from BindingUtils.ts, ServerSummary.controller.ts for usage of handlePropertyChange

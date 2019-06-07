@@ -1,0 +1,49 @@
+<dmview:XMLViewBase xmlns="sas.hc.m"
+                    xmlns:dmview="sas.dm.commons.view.base"
+                    xmlns:dmw="sas.dm.fsadmin.view.wizard"
+                    xmlns:f="sas.hc.ui.layout.form"
+                    controllerName="sas.dm.fsadmin.view.ServerSummary"
+                    pmControllerClass="sas/dm/fsadmin/view/ServerSummaryPM"
+                    class="consoleView"
+                    displayBlock="true"
+                    height="100%">
+
+    <Page showSubHeader="false" showFooter="false" enableScrolling="false">
+        <customHeader>
+            <ResponsiveToolbar id="serverToolbar"/>
+        </customHeader>
+        <f:Form editable="false">
+            <f:layout>
+                <f:ResponsiveGridLayout columnsL="1" labelSpanL="2" labelSpanM="3" labelSpanS="12"
+                                        adjustLabelSpan="false"/>
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="{i18nFSAdmin>server.view.summary.conn.label}">
+                            <f:fields>
+                                <Text text="{path: 'hti>server/attributes', formatter: '.connectionFormatter'}"/>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement id="serverLoggingLevels"
+                                       label="{i18nFSAdmin>server.view.summary.logginglevels.label}" visible="{= ${server/isConnected} == true}">
+                            <f:fields>
+                                <Text text="{hti>server/loggingLevels}"/>
+                            </f:fields>
+                        </f:FormElement>
+                        <!-- TODO: Future work once server online/offline monitoring is implemented -->
+                        <f:FormElement label="{i18nFSAdmin>server.view.summary.loggingaddlinfo.label}" visible="false">
+                            <f:fields>
+                                <Text text="{hti>server/loggingAdditionalInfo}"/>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+        <HBox class="fedServerConfigIssueErrorMsgContainer">
+            <Link id="configIssueEditLink" visible="false" text="{i18nFSAdmin>server.view.summary.editconfiguration.title}" press=".onConfigurationEdit" />
+        </HBox>
+    </Page>
+    <dmw:DataServicesWizardComponent id="dataServicesWizard" onSuccess=".onDataServiceSuccess" onError=".onDataServiceError" />
+</dmview:XMLViewBase>

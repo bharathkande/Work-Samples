@@ -1,0 +1,11 @@
+Note: You see a lot of defensive programming just as to avoid unforeseen scenarios, as this enterprise app has to be high available. Also code has been tailored in this samples which may cause missing dependencies.
+
+About: Sample of MVC followed
+
+Here State is driven by Model and synchronization between model and the view is accomplished through data binding or direct translation of control events into property changes on the model.
+
+View: Use of FlexBox based responsive layouts, property binding, expression binding and event binding in ServerSummary.view.xml
+
+Controller: Invoking custom components, handling events and formatters in ServerSummary.controller.ts
+
+Presentation Model: Adding controls from PM(Presentation Model), watched upon by controller and pushing them to view, isolating the logic from view (Another way of doing it, rather than including controls in XML). Also, any midtier calls go through single hook master controller accessible from Presentation model and hence have success and error handlers with it. Use of resource bundles and common constants from shared properties.
